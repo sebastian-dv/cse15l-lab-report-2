@@ -48,4 +48,4 @@ public void testReversed() {
 ```
 
 # Part Three
-One thing I learned from these past two labs was about the 'split()' method which can be used to split up strings at a certain character and put into an array.
+One thing I learned from these past two labs was about the 'split()' method which can be used to split up strings at a certain character and put into an array. I also learned that even if your code contains bugs, it could still pass some tests which could give you a false sense of success. This is why it's important to write multiple, well written tests that really try to push your code to failure rather than an easy test which will most likely pass regardless of how poor the code is.
