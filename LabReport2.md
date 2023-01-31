@@ -6,6 +6,7 @@ First, `handleRequest()` is called. The method then checks for the path and if i
 ![Screenshot 2023-01-30 at 6 10 46 PM](https://user-images.githubusercontent.com/23327980/215642724-728e180b-a02c-4313-a721-6a8d15862739.jpg)
 The same method as before is called, but this time since output contains the previous string that was added the server displays all of the previous strings added to output as well as the newest one, which in this case is "Done".
 # Part Two: ArrayExamples Bugs
+> Failure inducing test inputs
 ```
 public void testReverseInPlace() {
     int[] input = { 3, 2, 1 };
@@ -18,7 +19,7 @@ public void testReversed() {
 }
 ```
 These inputs will cause a failure in the testing due to the bugs in the code.
-> Broken code:
+> Broken code
 ```
 static void reverseInPlace(int[] arr) {
     for(int i = 0; i < arr.length; i += 1) {
@@ -33,5 +34,18 @@ static int[] reversed(int[] arr) {
     return arr;
 }
 ```
+Even though the code contains bugs, there are inputs that will not result in a failure, which are:
+```
+public void testReverseInPlace() {
+    int[] input = { 3 };
+    ArrayExamples.reverseInPlace(input);
+    assertArrayEquals(new int[]{ 3 }, input);
+}
+public void testReversed() {
+    int[] input = { };
+    assertArrayEquals(new int[]{ }, ArrayExamples.reversed(input));
+}
+```
+
 # Part Three
 One thing I learned from these past two labs was about the 'split()' method which can be used to split up strings at a certain character and put into an array.
