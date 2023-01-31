@@ -2,9 +2,9 @@
 ![Screenshot 2023-01-30 at 6 09 27 PM](https://user-images.githubusercontent.com/23327980/215642434-6d51328e-1dec-4e34-8462-75d69048eb67.jpg)
 ---
 ![Screenshot 2023-01-30 at 6 10 27 PM](https://user-images.githubusercontent.com/23327980/215642705-cc718199-a493-404c-beff-8954467bc2f6.jpg)
-First, `handleRequest()` is called. The method then checks for the path and if it contains "/add-message". If it does, it splits the query at "=". Then it adds whats on the right of the equal sign to 'output', which is "Hello", and returns output. 
+First, `handleRequest()` is called. The method then checks for the path and if it contains "/add-message". If it does, it splits the query at "=". Then it adds whats on the right of the equal sign to 'output', which is "Hello", and returns output. The url changes since I have added "add-message?s=Hello". Then the string output which starts off as an empty string gets "Hello" added to it as well as "\n" which will start a new line so that the next input in the url gets displayed below the previous output.
 ![Screenshot 2023-01-30 at 6 10 46 PM](https://user-images.githubusercontent.com/23327980/215642724-728e180b-a02c-4313-a721-6a8d15862739.jpg)
-The same method as before is called, but this time since output contains the previous string that was added the server displays all of the previous strings added to output as well as the newest one, which in this case is "Done".
+The same method as before is called, but this time since output contains the previous string that was added the server displays all of the previous strings added to output as well as the newest one, which in this case is "Done". This string gets added to output and is then displayed on the server below the previous output, "Hello". 
 # Part Two: ArrayExamples Bugs
 > Failure inducing test inputs
 ```
