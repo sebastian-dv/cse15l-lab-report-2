@@ -13,10 +13,6 @@ public void testReverseInPlace() {
     ArrayExamples.reverseInPlace(input);
     assertArrayEquals(new int[]{ 1, 2, 3 }, input);
 }
-public void testReversed() {
-    int[] input = { 3, 2, 1 };
-    assertArrayEquals(new int[]{ 1, 2, 3 }, ArrayExamples.reversed(input));
-}
 ```
 These inputs will cause a failure in the testing due to the bugs in the code.
 > Broken code
@@ -26,13 +22,6 @@ static void reverseInPlace(int[] arr) {
       arr[i] = arr[arr.length - i - 1];
     }
 }
-static int[] reversed(int[] arr) {
-    int[] newArray = new int[arr.length];
-    for(int i = 0; i < arr.length; i += 1) {
-      arr[i] = newArray[arr.length - i - 1];
-    }
-    return arr;
-}
 ```
 Even though the code contains bugs, there are inputs that will not result in a failure, which are:
 ```
@@ -41,11 +30,28 @@ public void testReverseInPlace() {
     ArrayExamples.reverseInPlace(input);
     assertArrayEquals(new int[]{ 3 }, input);
 }
-public void testReversed() {
-    int[] input = { };
-    assertArrayEquals(new int[]{ }, ArrayExamples.reversed(input));
+```
+![Screenshot 2023-01-30 at 7 22 42 PM](https://user-images.githubusercontent.com/23327980/215654959-07baf277-072b-4f2b-a445-bba2a0ff1483.jpg)
+
+Broken Code Before Fixing:
+```
+static void reverseInPlace(int[] arr) {
+    for(int i = 0; i < arr.length; i += 1) {
+      arr[i] = arr[arr.length - i - 1];
+    }
 }
 ```
+Code After Being Fixed:
+```
+static void reverseInPlace(int[] arr) {
+    for(int i = 0; i < arr.length/2; i += 1) {
+      int temp = arr[i];
+      arr[i] = arr[arr.length - i - 1];
+      arr[arr.length - i - 1] = temp;
+    }
+}
+```
+This fix addresses the issue because prior to the fix, the code would only copy the second half of the array to the first half, turning the array into a palindrome of integers. After the fix, the for loop only goes through half of the array, swapping the opposite integers with each other. Using a temp variable, I was able to keep the integer at one index after changing it to the value of the integer on the other side of the array. Then I assign the temp integer to the integer I did not alter, effectly swapping the vlaues of two opposite indices.
 
 # Part Three
 One thing I learned from these past two labs was about the 'split()' method which can be used to split up strings at a certain character and put into an array. I also learned that even if your code contains bugs, it could still pass some tests which could give you a false sense of success. This is why it's important to write multiple, well written tests that really try to push your code to failure rather than an easy test which will most likely pass regardless of how poor the code is.
