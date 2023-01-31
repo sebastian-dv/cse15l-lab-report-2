@@ -5,8 +5,7 @@
 First, `handleRequest()` is called. The method then checks for the path and if it contains "/add-message". If it does, it splits the query at "=". Then it adds whats on the right of the equal sign to 'output', which is "Hello", and returns output. 
 ![Screenshot 2023-01-30 at 6 10 46 PM](https://user-images.githubusercontent.com/23327980/215642724-728e180b-a02c-4313-a721-6a8d15862739.jpg)
 The same method as before is called, but this time since output contains the previous string that was added the server displays all of the previous strings added to output as well as the newest one, which in this case is "Done".
-# Part Two
-ArrayExamples Bugs
+# Part Two: ArrayExamples Bugs
 ```
 public void testReverseInPlace() {
     int[] input = { 3, 2, 1 };
@@ -16,6 +15,22 @@ public void testReverseInPlace() {
 public void testReversed() {
     int[] input = { 3, 2, 1 };
     assertArrayEquals(new int[]{ 1, 2, 3 }, ArrayExamples.reversed(input));
+}
+```
+These inputs will cause a failure in the testing due to the bugs in the code.
+> Broken code:
+```
+static void reverseInPlace(int[] arr) {
+    for(int i = 0; i < arr.length; i += 1) {
+      arr[i] = arr[arr.length - i - 1];
+    }
+}
+static int[] reversed(int[] arr) {
+    int[] newArray = new int[arr.length];
+    for(int i = 0; i < arr.length; i += 1) {
+      arr[i] = newArray[arr.length - i - 1];
+    }
+    return arr;
 }
 ```
 # Part Three
